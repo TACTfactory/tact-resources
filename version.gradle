@@ -2,16 +2,19 @@ ext {
     config = [
         version : [
             springBoot : [
-                core : '2.1.1.RELEASE',
+                core : '2.1.3.RELEASE',
                 swagger : '2.9.2'
             ],
             lib : [
                 junit : '4.12',
                 guava : '11.0.2',
-                lombok : '1.18.4',
+                lombok : '1.18.6',
+                hibernate : '5.4.0.Final',
                 postgresql : '42.2.5',
                 h2database : '1.4.197',
-                modelmapper : '1.1.0'
+                modelmapper : '2.2.0',
+                jsoup: '1.11.3',
+                pojotester: '0.7.6'
             ]
         ]
     ]
@@ -19,9 +22,15 @@ ext {
         guava  : "com.google.guava:guava:${config.version.lib.guava}",
         junit : "junit:junit:${config.version.lib.junit}",
         lombok : "org.projectlombok:lombok:${config.version.lib.lombok}",
+        hibernate : [
+            core          : "org.hibernate:hibernate-core:${config.version.lib.hibernate}",
+            entitymanager : "org.hibernate:hibernate-entitymanager:${config.version.lib.hibernate}",
+            spatial       : "org.hibernate:hibernate-spatial:${config.version.lib.hibernate}",
+        ],
         postgresql : "org.postgresql:postgresql:${config.version.lib.postgresql}",
         h2database : "com.h2database:h2:${config.version.lib.h2database}",
         modelmapper : "org.modelmapper:modelmapper:${config.version.lib.modelmapper}",
+        jsoup : "org.jsoup:jsoup:${config.version.lib.jsoup}",
         springBoot : [
             gradlePlugin : "org.springframework.boot:spring-boot-gradle-plugin:${config.version.springBoot.core}",
             starter : [
@@ -29,17 +38,17 @@ ext {
                 webFtl   : "org.springframework.boot:spring-boot-starter-freemarker:${config.version.springBoot.core}",
                 webService : "org.springframework.boot:spring-boot-starter-web-services:${config.version.springBoot.core}",
                 security : "org.springframework.boot:spring-boot-starter-security:${config.version.springBoot.core}",
-		tomcat   : "org.springframework.boot:spring-boot-starter-tomcat:${config.version.springBoot.core}",
+                tomcat   : "org.springframework.boot:spring-boot-starter-tomcat:${config.version.springBoot.core}",
                 dataRest : "org.springframework.boot:spring-boot-starter-data-rest:${config.version.springBoot.core}",
                 dataJpa  : "org.springframework.boot:spring-boot-starter-data-jpa:${config.version.springBoot.core}",
                 dataMongo :"org.springframework.boot:spring-boot-starter-data-mongodb:${config.version.springBoot.core}",
                 mail     : "org.springframework.boot:spring-boot-starter-mail:${config.version.springBoot.core}",
                 amqp     : "org.springframework.boot:spring-boot-starter-amqp:${config.version.springBoot.core}",
                 security : "org.springframework.boot:spring-boot-starter-security:${config.version.springBoot.core}",
-		freemarker : "org.springframework.boot:spring-boot-starter-freemarker:${config.version.springBoot.core}",
+                freemarker : "org.springframework.boot:spring-boot-starter-freemarker:${config.version.springBoot.core}",
                 test     : "org.springframework.boot:spring-boot-starter-test:${config.version.springBoot.core}"
             ],
-            data : [
+	    data : [
                 ldap     : "org.springframework.data:spring-data-ldap:${config.version.springBoot.core}",
             ],
             ldap         : "org.springframework.ldap:spring-ldap-core:2.3.1.RELEASE",
@@ -48,7 +57,8 @@ ext {
             test : [
                 core     : "org.springframework.boot:spring-boot-starter-test:${config.version.springBoot.core}",
                 security : "org.springframework.security:spring-security-test:5.1.2.RELEASE",
-                mockmvc  : "org.springframework.restdocs:spring-restdocs-mockmvc:2.0.3.RELEASE"
+                mockmvc  : "org.springframework.restdocs:spring-restdocs-mockmvc:2.0.3.RELEASE",
+                pojotester: "pl.pojo:pojo-tester:${config.version.lib.pojotester}"
             ],
             security : [
                 core     : "org.springframework.security:spring-security-core:4.0.3.RELEASE",

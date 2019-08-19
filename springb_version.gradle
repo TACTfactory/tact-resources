@@ -12,7 +12,7 @@ ext {
                 hibernate : '5.4.0.Final',
                 postgresql : '42.2.5',
                 h2database : '1.4.197',
-                modelmapper : '2.2.0',
+                modelmapper : '2.3.0',
                 jsoup: '1.11.3',
                 pojotester: '0.7.6'
             ]
